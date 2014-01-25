@@ -1,0 +1,40 @@
+[
+{
+  "keys": ["enter"],
+  "command": "find_in_files_open_file",
+  "context": [
+      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["n"],
+  "command": "find_in_files_jump_file",
+  "context": [
+      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["p"],
+  "command": "find_in_files_jump_file",
+  "args": { "forward": false },
+  "context": [
+      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["j"],
+  "command": "find_next",
+  "context": [
+      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["k"],
+  "command": "find_prev",
+  "args": { "forward": false },
+  "context": [
+      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+}
+
+]
