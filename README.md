@@ -22,6 +22,15 @@ Adds a couple of missing features to SublimeText Find Results buffer.
 You can install via [Sublime Package Control](http://wbond.net/sublime_packages/package_control)  
 Or you can clone this repo into your Sublime Text Packages folder.
 
+## Changing color scheme
+If you don't like colors used in the find results buffer just copy [this file](https://github.com/aziz/BetterFindBuffer/blob/master/FindResults.hidden-tmTheme) to your User folder, change colors and create a file called `Find Results.sublime-settings` in you User folder and paste the code below:
+
+``` json
+{
+  "color_scheme": "Path to your custom color scheme file. e.g. Packages/User/Custom_FindResults.hidden-tmTheme",
+}
+```
+
 ### Credit
 `FindInFilesOpenFileCommand` is inspired by [this answer on StackOverflow](http://stackoverflow.com/a/16779397/78254)
 
