@@ -51,8 +51,7 @@ class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
             region = sublime.Region(file_match.begin(), file_match.begin())
             v.sel().clear()
             v.sel().add(region)
-            line_index = len(v.split_by_newlines(sublime.Region(0, v.sel()[0].begin()))) - 1
-            top_offset = line_index * v.line_height()
+            top_offset = v.text_to_layout(region.begin())[1] - v.line_height()
             v.set_viewport_position((0, top_offset), True)
 
 
