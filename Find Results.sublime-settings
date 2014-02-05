@@ -5,5 +5,6 @@
   "margin": 8,
   "gutter": false,
   "line_numbers": true,
+  "rulers": [],
   "word_wrap": true // ?
 }
