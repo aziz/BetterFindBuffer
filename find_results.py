@@ -2,7 +2,6 @@ import sublime
 import sublime_plugin
 import re
 import os
-import shutil
 
 
 class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
@@ -78,28 +77,3 @@ class FindInFilesSetReadOnly(sublime_plugin.EventListener):
     def on_deactivated_async(self, view):
         if self.is_find_results(view):
             view.set_read_only(False)
-
-
-def plugin_loaded():
-    default_package_path = os.path.join(sublime.packages_path(), "Default")
-
-    if not os.path.exists(default_package_path):
-        os.makedirs(default_package_path)
-
-    source_path = os.path.join(
-        sublime.packages_path(), "BetterFindBuffer", "Find Results.hidden-tmLanguage")
-    destination_path = os.path.join(
-        default_package_path, "Find Results.hidden-tmLanguage")
-
-    if os.path.isfile(destination_path):
-        os.unlink(destination_path)
-
-    shutil.copy(source_path, default_package_path)
-
-
-def plugin_unloaded():
-    default_package_path = os.path.join(sublime.packages_path(), "Default")
-    destination_path = os.path.join(
-        default_package_path, "Find Results.hidden-tmLanguage")
-    if os.path.exists(default_package_path) and os.path.isfile(destination_path):
-        os.remove(destination_path)
