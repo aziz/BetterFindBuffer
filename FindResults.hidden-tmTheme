@@ -148,7 +148,7 @@
 				<string>#ffffff</string>
 				<key>background</key>
 				<string>#80a0ff</string>
-				<key>fontstyle</key>
+				<key>fontStyle</key>
 				<string>bold</string>
 			</dict>
 		</dict>
