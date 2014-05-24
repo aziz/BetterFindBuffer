@@ -23,7 +23,7 @@ You can install via [Sublime Package Control](http://wbond.net/sublime_packages/
 Or you can clone this repo into your Sublime Text Packages folder.
 
 ## Changing color scheme
-If you don't like colors used in the find results buffer just copy [this file](https://github.com/aziz/BetterFindBuffer/blob/master/FindResults.hidden-tmTheme) to your User folder, change colors and create a file called `Find Results.sublime-settings` in you User folder and paste the code below:
+If you don't like colors used in the find results buffer just copy [this file](https://github.com/aziz/BetterFindBuffer/blob/master/FindResults.hidden-tmTheme) to your User folder, change colors and save it and then create a file called `Find Results.sublime-settings` in your User folder and paste the code below:
 
 ``` json
 {
