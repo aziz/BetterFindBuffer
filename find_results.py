@@ -2,29 +2,46 @@ import sublime
 import sublime_plugin
 import re, os, shutil
 
-class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        view = self.view
+# TODO:
+# - Add line highlighting
+# - Clean up the logic in open_file
+
+class FileOpeningSupport(object):
+    def open_file(self, transient = False):
+        view   = self.view
         window = self.view.window()
 
         # If we have multiple groups, then select the next one in layout
-        # to open the new file.
+        # to open the new file.  We only do transient if we have a
+        # split layout.
         start_group = window.active_group()
-        dest_group = (start_group + 1) % window.num_groups()
-        set_group  = (start_group != dest_group)
+        dest_group  = (start_group + 1) % window.num_groups()
+        should_open = (not transient) or (start_group != dest_group)
+        open_flags = sublime.TRANSIENT if transient else 0
 
-        if view.name() == "Find Results":
+        if (view.name() == "Find Results") and should_open:
             line_no = self.get_line_no()
             file_name = self.get_file()
-            print ("BetterFind: Opening file: %s" % file_name)
+            print ("BetterFind: Opening file: %s - %s" % (file_name, transient))
 
+            new_view = None
             window.focus_group(dest_group)
             if line_no is not None and file_name is not None:
+                open_flags = open_flags | sublime.ENCODED_POSITION
                 file_loc = "%s:%s" % (file_name, line_no)
-                view.window().open_file(file_loc, sublime.ENCODED_POSITION)
+                new_view = view.window().open_file(file_loc, open_flags)
             elif file_name is not None:
-                view.window().open_file(file_name)
-            window.focus_group(start_group)
+                print("Opening transient window")
+                new_view = view.window().open_file(file_name, open_flags)
+
+            # Transient windows may not respect the focus group, so we move
+            # them manually
+            if new_view and transient:
+                window.set_view_index(new_view, dest_group, 0)
+
+            # If transient, then jump back over to find view
+            if transient:
+                window.focus_group(start_group)
 
     def get_line_no(self):
         view = self.view
@@ -48,6 +65,11 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
                 line = view.line(line.begin() - 1)
         return None
 
+class FindInFilesOpenFileCommand(sublime_plugin.TextCommand, FileOpeningSupport):
+    def run(self, edit):
+        self.open_file(transient = False)
+
+
 class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
     def run(self, edit, forward=True):
         print("BetterFind: jumping")
@@ -66,6 +88,19 @@ class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
             top_offset = v.text_to_layout(region.begin())[1] - v.line_height()
             v.set_viewport_position((0, top_offset), True)
 
+class FindInFilesFindNextCommand(sublime_plugin.TextCommand, FileOpeningSupport):
+    def run(self, edit, forward=True):
+        print("BetterFind: find next: %s " % forward)
+        v = self.view
+        window = v.window()
+
+        if forward:
+            window.run_command("find_next",)
+        else:
+            window.run_command("find_prev", {"forward": False})
+
+        # If we want to support transient preview
+        self.open_file(transient = True)
 
 class FindInFilesSetReadOnly(sublime_plugin.EventListener):
     def is_find_results(self, view):
