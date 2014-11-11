@@ -5,14 +5,26 @@ import re, os, shutil
 class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
+        window = self.view.window()
+
+        # If we have multiple groups, then select the next one in layout
+        # to open the new file.
+        start_group = window.active_group()
+        dest_group = (start_group + 1) % window.num_groups()
+        set_group  = (start_group != dest_group)
+
         if view.name() == "Find Results":
             line_no = self.get_line_no()
             file_name = self.get_file()
+            print ("BetterFind: Opening file: %s" % file_name)
+
+            window.focus_group(dest_group)
             if line_no is not None and file_name is not None:
                 file_loc = "%s:%s" % (file_name, line_no)
                 view.window().open_file(file_loc, sublime.ENCODED_POSITION)
             elif file_name is not None:
                 view.window().open_file(file_name)
+            window.focus_group(start_group)
 
     def get_line_no(self):
         view = self.view
@@ -36,9 +48,9 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
                 line = view.line(line.begin() - 1)
         return None
 
-
 class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
     def run(self, edit, forward=True):
+        print("BetterFind: jumping")
         v = self.view
         files = v.find_by_selector("entity.name.filename.find-in-files")
         caret = v.sel()[0]
