@@ -79,7 +79,6 @@ class FileOpeningSupport(object):
         view = self.view
         if len(view.sel()) == 1:
             line_text = view.substr(view.line(view.sel()[0]))
-            print("line_text: %s" % line_text)
             match = re.match(r"\s*(\d+).+", line_text)
             if match:
                 return match.group(1)
@@ -119,7 +118,6 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand, FileOpeningSupport)
 
 class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
     def run(self, edit, forward=True):
-        print("BetterFind: jumping")
         v = self.view
         files = v.find_by_selector("entity.name.filename.find-in-files")
         caret = v.sel()[0]
@@ -137,7 +135,6 @@ class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
 
 class FindInFilesFindNextCommand(sublime_plugin.TextCommand, FileOpeningSupport):
     def run(self, edit, forward=True):
-        print("BetterFind: find next: %s " % forward)
         v = self.view
         window = v.window()
 
