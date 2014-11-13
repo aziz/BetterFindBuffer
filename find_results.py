@@ -88,7 +88,7 @@ class FileOpeningSupport(object):
         view = self.view
         if len(view.sel()) == 1:
             line = view.line(view.sel()[0])
-            while line.begin() > 0:
+            while line.begin() >= 0:
                 line_text = view.substr(line)
                 match = re.match(r"(.+):$", line_text)
                 if match:
@@ -102,7 +102,7 @@ class FileOpeningSupport(object):
         view = self.view
         if len(view.sel()) == 1:
             line = view.line(view.sel()[0])
-            while line.begin() > 0:
+            while line.begin() >= 0:
                 line_text = view.substr(line)
                 match = re.match(r"^Searching.*?\"(.*)\".*?$", line_text)
                 if match:
