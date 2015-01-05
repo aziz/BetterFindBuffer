@@ -65,9 +65,7 @@ class FindInFilesSetReadOnly(sublime_plugin.EventListener):
         if self.is_find_results(view):
             # Get user preference for setting view as read only
             settings = sublime.load_settings('BetterFindBuffer.sublime-settings')
-            readonly = True
-            if settings:
-                readonly = settings.get('readonly', True)
+            readonly = settings.get('readonly', True) if settings else True
             view.set_read_only(readonly)
 
     def on_deactivated_async(self, view):
