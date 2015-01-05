@@ -16,16 +16,31 @@
                             {
                                 "command": "open_file", "args":
                                 {
-                                    "file": "${packages}/BetterFindBuffer/Find Results.sublime-settings"
+                                    "file": "${packages}/BetterFindBuffer/BetterFindBuffer.sublime-settings"
                                 },
                                 "caption": "Settings – Default"
                             },
                             {
                                 "command": "open_file", "args":
                                 {
-                                    "file": "${packages}/User/Find Results.sublime-settings"
+                                    "file": "${packages}/User/BetterFindBuffer.sublime-settings"
                                 },
                                 "caption": "Settings – User"
+                            },
+                            { "caption": "-" },
+                            {
+                                "command": "open_file", "args":
+                                {
+                                    "file": "${packages}/BetterFindBuffer/Find Results.sublime-settings"
+                                },
+                                "caption": "Find Results Settings – Default"
+                            },
+                            {
+                                "command": "open_file", "args":
+                                {
+                                    "file": "${packages}/User/Find Results.sublime-settings"
+                                },
+                                "caption": "Find Results Settings – User"
                             }
                         ]
                     }
