@@ -63,11 +63,26 @@ class FindInFilesSetReadOnly(sublime_plugin.EventListener):
 
     def on_activated_async(self, view):
         if self.is_find_results(view):
-            view.set_read_only(True)
+            # Get user preference for setting view as read only
+            settings = sublime.load_settings('BetterFindBuffer.sublime-settings')
+            readonly = True
+            if settings:
+                readonly = settings.get('readonly', True)
+            view.set_read_only(readonly)
 
     def on_deactivated_async(self, view):
         if self.is_find_results(view):
             view.set_read_only(False)
+
+
+# Some plugins like **Color Highlighter** are forcing their color-scheme to the activated view
+# Although, it's something that should be fixed on their side, in the meantime, it's safe to force
+# the color shceme on `on_activated_async` event.
+class BFBForceColorSchemeCommand(sublime_plugin.EventListener):
+    def on_activated_async(self, view):
+        syntax = view.settings().get('syntax')
+        if syntax and (syntax.endswith("Find Results.hidden-tmLanguage")):
+            view.settings().set('color_scheme','Packages/BetterFindBuffer/FindResults.hidden-tmTheme')
 
 
 def plugin_loaded():
