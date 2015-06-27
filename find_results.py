@@ -37,22 +37,53 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
         return None
 
 
-class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
+class FindInFilesJumpCommand(sublime_plugin.TextCommand):
     def run(self, edit, forward=True):
-        v = self.view
-        files = v.find_by_selector("entity.name.filename.find-in-files")
-        caret = v.sel()[0]
+        caret = self.view.sel()[0]
+        matches = self.find_matches()
         if forward:
-            file_match = next((f for f in files if caret.begin() < f.begin()), None)
+            match = self.find_next_match(caret, matches)
         else:
-            files.reverse()
-            file_match = next((f for f in files if caret.begin() > f.begin()), None)
-        if file_match:
-            region = sublime.Region(file_match.begin(), file_match.begin())
-            v.sel().clear()
-            v.sel().add(region)
-            top_offset = v.text_to_layout(region.begin())[1] - v.line_height()
-            v.set_viewport_position((0, top_offset), True)
+            match = self.find_prev_match(caret, matches)
+        if match:
+            self.goto_match(match)
+
+    def find_next_match(self, caret, matches):
+        return next((m for m in matches if caret.begin() < m.begin()), None)
+
+    def find_prev_match(self, caret, matches):
+        return next((m for m in reversed(matches) if caret.begin() > m.begin()), None)
+
+    def goto_match(self, match):
+        self.view.sel().clear()
+        self.view.sel().add(match)
+
+
+class FindInFilesJumpFileCommand(FindInFilesJumpCommand):
+    def find_matches(self):
+        return self.view.find_by_selector('entity.name.filename.find-in-files')
+
+    def goto_match(self, match):
+        v = self.view
+        region = sublime.Region(match.begin(), match.begin())
+        super(FindInFilesJumpFileCommand, self).goto_match(region)
+        top_offset = v.text_to_layout(region.begin())[1] - v.line_height()
+        v.set_viewport_position((0, top_offset), True)
+
+
+class FindInFilesJumpMatchCommand(FindInFilesJumpCommand):
+    def find_matches(self):
+        return self.view.get_regions('match')
+
+    def goto_match(self, match):
+        v = self.view
+        super(FindInFilesJumpMatchCommand, self).goto_match(match)
+        vx, vy = v.viewport_position()
+        vw, vh = v.viewport_extent()
+        x, y = v.text_to_layout(match.begin())
+        h = v.line_height()
+        if y < vy or y + h > vy + vh:
+            v.show_at_center(match)
 
 
 class FindInFilesSetReadOnly(sublime_plugin.EventListener):

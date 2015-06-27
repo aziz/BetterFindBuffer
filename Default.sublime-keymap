@@ -23,14 +23,14 @@
 },
 {
   "keys": ["j"],
-  "command": "find_next",
+  "command": "find_in_files_jump_match",
   "context": [
       {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
 },
 {
   "keys": ["k"],
-  "command": "find_prev",
+  "command": "find_in_files_jump_match",
   "args": { "forward": false },
   "context": [
       {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
