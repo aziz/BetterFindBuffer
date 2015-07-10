@@ -40,7 +40,7 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
 class FindInFilesJumpCommand(sublime_plugin.TextCommand):
     def run(self, edit, forward=True, cycle=True):
         caret = self.view.sel()[0]
-        matches = self.find_matches()
+        matches = self.filter_matches(caret, self.find_matches())
         if forward:
             match = self.find_next_match(caret, matches, cycle)
         else:
@@ -51,6 +51,12 @@ class FindInFilesJumpCommand(sublime_plugin.TextCommand):
     def find_next_match(self, caret, matches, cycle):
         default = matches[0] if cycle and len(matches) else None
         return next((m for m in matches if caret.begin() < m.begin()), default)
+
+    def filter_matches(self, caret, matches):
+        footers = self.view.find_by_selector('footer.find-in-files')
+        lower_bound = next((f.end() for f in footers if f.end() < caret.begin()), 0)
+        upper_bound = next((f.end() for f in footers if f.end() > caret.begin()), self.view.size())
+        return [m for m in matches if m.begin() > lower_bound and m.begin() < upper_bound]
 
     def find_prev_match(self, caret, matches, cycle):
         default = matches[-1] if cycle and len(matches) else None
