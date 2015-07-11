@@ -38,22 +38,22 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
 
 
 class FindInFilesJumpCommand(sublime_plugin.TextCommand):
-    def run(self, edit, forward=True, wrap=False):
+    def run(self, edit, forward=True, cycle=False):
         caret = self.view.sel()[0]
         matches = self.find_matches()
         if forward:
-            match = self.find_next_match(caret, matches, wrap)
+            match = self.find_next_match(caret, matches, cycle)
         else:
-            match = self.find_prev_match(caret, matches, wrap)
+            match = self.find_prev_match(caret, matches, cycle)
         if match:
             self.goto_match(match)
 
-    def find_next_match(self, caret, matches, wrap):
-        default = matches[0] if wrap and len(matches) else None
+    def find_next_match(self, caret, matches, cycle):
+        default = matches[0] if cycle and len(matches) else None
         return next((m for m in matches if caret.begin() < m.begin()), default)
 
-    def find_prev_match(self, caret, matches, wrap):
-        default = matches[-1] if wrap and len(matches) else None
+    def find_prev_match(self, caret, matches, cycle):
+        default = matches[-1] if cycle and len(matches) else None
         return next((m for m in reversed(matches) if caret.begin() > m.begin()), default)
 
     def goto_match(self, match):
