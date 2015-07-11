@@ -73,7 +73,7 @@
 
 		<dict>
 			<key>match</key>
-			<string>^Searching (\d+) files for (".+")(.+)?$</string>
+			<string>^Searching (\d+) file(?:s)? for (".+")(.+)?$</string>
 			<key>name</key>
 			<string>header.find-in-files</string>
 			<key>captures</key>
@@ -112,6 +112,34 @@
 				<dict>
 					<key>name</key>
 					<string>sep.find-in-files</string>
+				</dict>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>match</key>
+			<string>^(0) matches\n</string>
+			<key>name</key>
+			<string>footer.find-in-files</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.no_matches.find-in-files</string>
+				</dict>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>match</key>
+			<string>^(0) matches</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.no_matches.find-in-files</string>
 				</dict>
 			</dict>
 		</dict>
