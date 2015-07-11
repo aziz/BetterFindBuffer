@@ -77,7 +77,10 @@ class BFBForceColorSchemeCommand(sublime_plugin.EventListener):
     def on_activated_async(self, view):
         syntax = view.settings().get('syntax')
         if syntax and (syntax.endswith("Find Results.hidden-tmLanguage")):
-            view.settings().set('color_scheme','Packages/BetterFindBuffer/FindResults.hidden-tmTheme')
+            settings = sublime.load_settings('Find Results.sublime-settings')
+            color_scheme = settings.get('color_scheme')
+            if color_scheme:
+                view.settings().set('color_scheme', color_scheme)
 
 
 def plugin_loaded():
