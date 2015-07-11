@@ -73,7 +73,7 @@
 
 		<dict>
 			<key>match</key>
-			<string>^Searching (\d+) files for (".+")(.+)?$</string>
+			<string>^Searching (\d+) file(?:s)? for (".+")(.+)?$</string>
 			<key>name</key>
 			<string>header.find-in-files</string>
 			<key>captures</key>
