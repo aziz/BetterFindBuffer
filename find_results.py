@@ -38,7 +38,7 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
 
 
 class FindInFilesJumpCommand(sublime_plugin.TextCommand):
-    def run(self, edit, forward=True, cycle=False):
+    def run(self, edit, forward=True, cycle=True):
         caret = self.view.sel()[0]
         matches = self.find_matches()
         if forward:
