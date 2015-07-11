@@ -95,6 +95,18 @@
 
 		<dict>
 			<key>scope</key>
+			<string>variable.no_matches.find-in-files</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#ff0000</string>
+				<key>fontStyle</key>
+				<string>bold</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>scope</key>
 			<string>constant.numeric.line-number.find-in-files</string>
 			<key>settings</key>
 			<dict>
