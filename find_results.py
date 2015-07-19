@@ -54,7 +54,7 @@ class FindInFilesJumpCommand(sublime_plugin.TextCommand):
 
     def filter_matches(self, caret, matches):
         footers = self.view.find_by_selector('footer.find-in-files')
-        lower_bound = next((f.end() for f in footers if f.end() < caret.begin()), 0)
+        lower_bound = next((f.end() for f in reversed(footers) if f.end() < caret.begin()), 0)
         upper_bound = next((f.end() for f in footers if f.end() > caret.begin()), self.view.size())
         return [m for m in matches if m.begin() > lower_bound and m.begin() < upper_bound]
 
