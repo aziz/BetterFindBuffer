@@ -4,12 +4,12 @@ Adds a couple of missing features to SublimeText Find Results buffer.
 **Note**: You need to *restart* your SublimeText after installing this plugin.
 
 ## Features
-- Open the the file and line under the cursor by pressing `enter`
+- Open the the file and line under the cursor by pressing <kbd>Enter</kbd>
 - Easier keyboard navigation  
-    `n` and `p` to jump to next/previous file 
-    `j` and `k` to jump to next/previous search result
+    <kbd>n</kbd> and <kbd>p</kbd> to jump to next/previous file 
+    <kbd>j</kbd> and <kbd>k</kbd> to jump to next/previous search result
 - Set find results as readonly
-- Adds search keyword and file names to the symbols list (use `super+R`)
+- Adds search keyword and file names to the symbols list (use <kbd>Super</kbd>+<kbd>R</kbd>)
 - Cleaner UI (hides line numbers, gutter, indent guides)
 - Better Syntax highlighting of the find results
 - Cutom color scheme
