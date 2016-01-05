@@ -37,6 +37,19 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
         return None
 
 
+class FindInFilesOpenAllFilesCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        view = self.view
+        if view.name() == "Find Results":
+            for file_name in self.get_files():
+                view.window().open_file(file_name, sublime.ENCODED_POSITION)
+
+    def get_files(self):
+        view = self.view
+        content = view.substr(sublime.Region(0, view.size()))
+        return [match.group(1) for match in re.finditer(r"^([^\s].+):$", content, re.MULTILINE)]
+
+
 class FindInFilesJumpFileCommand(sublime_plugin.TextCommand):
     def run(self, edit, forward=True):
         v = self.view
