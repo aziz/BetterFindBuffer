@@ -31,6 +31,8 @@ If you don't like colors used in the find results buffer just copy [this file](h
 }
 ```
 
+Alternatively, You can use [BetterFindBuffer-Designer](http://bobtherobot.github.io/BetterFindBuffer-Designer/) tool as GUI to easily customize the Find-Results color scheme. 
+
 ### Credit
 `FindInFilesOpenFileCommand` is inspired by [this answer on StackOverflow](http://stackoverflow.com/a/16779397/78254)
 
