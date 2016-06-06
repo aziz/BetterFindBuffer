@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>BetterFinderBuffer - Theme Designer</title>
+<link href="designer.css" rel="stylesheet" type="text/css" />
+<!--<link href="finds.css" rel="stylesheet" type="text/css" />-->
+
+<style>
+html, body {
+	font-family : Helvetica;
+	font-size : 12px;
+}
+
+.tab {
+	display : inline-block;
+	width : 20px;
+}
+.line {
+	height : 1.2em;
+	overflow : hidden;
+	line-height : 1.2em;
+	vertical-align : middle;
+}
+.line-indent {
+	display : inline-block;
+	width : 10px;
+}
+.line-margin {
+	display : inline-block;
+	height : 1.2em;
+	width : 30px;
+	vertical-align : middle;
+}
+#editor {
+	position : fixed;
+	top : 0;
+	right : 0;
+	width : 245px;
+	background-color : #EFEFEF;
+	padding : 0px;
+	border : 1px solid #CCCCCC;
+	
+	
+	-webkit-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	   -moz-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	    -ms-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	     -o-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	
+}
+.Accordian li input[type="color"], .Accordian h2 input, #generate  {
+	position : absolute;
+	right : 30px;
+}
+
+.clearVal  {
+	position : absolute;
+	display : inline-block;
+	right : 15px;
+	color : #FF0000;
+	cursor : pointer;
+}
+.clearVal:before {
+	content : "x";
+}
+.resultsData {
+	width : 90%;
+	height : 100px;
+}
+#myfont-selector {
+	width : 90%;
+	display : inline-block;
+}
+#font-main_font-size {
+	width : 30px;
+}
+.pathString {
+	background-color : #DDDDDD;
+	border : 1px solid #CCCCCC;
+	overflow : hidden;
+	/*height : 18px;*/
+	width : 90%;
+}
+
+/*JBEEB::Accordian CSS 1.0
+
+     __ __                __     
+    |__|  |__ _____ _____|  |__ 
+    |  |  =  |  =__|  =__|  =  |
+   _|  |_____|_____|_____|_____|
+  |___/
+
+
+Copyright (c) Mike Gieson
+http://jbeeb.com
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+
+/* basic formatting */
+.Accordian, .Accordian ul, .Accordian li, .Accordian h1, .Accordian h2, .Accordian h3 {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	font-family : "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 20px;
+	cursor : default;
+	position : relative; /* required to ensure children that have "absolute" position get hidden. */
+	
+}
+
+/* level indentation */
+.Accordian ul, .Accordian li, .Accordian h1 {
+	padding-left: 10px;
+}
+
+/* panels */
+.Accordian ul {
+}
+
+
+/* between line items */
+.Accordian li {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+/* essentially a psuedo padding for the UL's, otherwise if the UL's have padding, the closed state shows a gap between blocks. */
+.Accordian li:first-child {
+	padding-top: 10px;
+}
+.Accordian li:last-child {
+	padding-bottom: 10px;
+}
+
+
+/* sections */
+.Accordian h1 {
+	
+	/* Use this to show and icon:
+	background-image: url("icon-folder.png");
+	background-repeat: no-repeat;
+	background-position: left top;
+	*/
+	
+	/* showing button-like mouse */
+	cursor : pointer;
+
+	background : #f4f4f4;
+	background-image:linear-gradient(to bottom, #fdfdfd 0%,#eaeaea 100%);
+	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd),color-stop(100%, #eaeaea));
+	background-image:-webkit-linear-gradient(top, #fdfdfd 0%,#eaeaea 100%);
+	background-image:-moz-linear-gradient(top, #fdfdfd 0%,#eaeaea 100%);
+	background-image:-ms-linear-gradient(top, #fdfdfd 0%,#eaeaea 100%);
+	background-image:-o-linear-gradient(top, #fdfdfd 0%,#eaeaea 100%);
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	
+	font-weight : bold;
+	color : #888888;
+}
+
+/* alternative section labels */
+.Accordian h2 {
+	margin-top: 8px;
+	color : #888888;
+}
+.Accordian h3 {
+	margin-top: 5px;
+}
+
+.Accordian a,
+.Accordian a:active,
+.Accordian a:hover,
+.Accordian a:visited {
+	color: #333;
+	text-decoration: none;
+	cursor : default;
+}
+.Accordian a:active {
+	color: #9e9e9f;
+}
+.Accordian a:visited {
+	color: #8b31d1;
+}
+
+
+
+</style>
+
+<script>
+/*! BetterFindBufferDesigner v1.0 - 2016-06-04. By Mike Gieson (http://www.gieson.com).*/
+this.jbeeb=this.jbeeb||{},function(){function a(a){var b=a.id;return b||(b=m+n++,a.id=b),b}function b(a,b,c){a.attachEvent?a.attachEvent("on"+b,c):a.addEventListener&&a.addEventListener(b,c,!1)}function c(a,b,c){a.attachEvent?a.detachEvent("on"+b,c):a.addEventListener&&a.removeEventListener(b,c,!1)}function d(a){if(a){var b=null;if(b="string"==typeof a?document.getElementById(a):a)return b}return null}function e(a){var b=d(a),c=b.dataset.saccstate;"1"==c?f(b):g(b)}function f(a){var b=d(a);b&&(b.dataset.saccstate=0,b.style.transition="height "+l+"ms ease-out",b.style.height="0px",b.style.overflow="hidden")}function g(a,b){var c=d(a);if(c){c.dataset.saccstate=1,c.style.transition="height "+l+"ms ease-out",c.style.height="auto";var e=c.offsetHeight;b?h(c,e):(c.style.height="0px",setTimeout(function(){h(c,e)},50))}}function h(a,b){a.style.height=b+"px"}var j={},k=function(){function a(){for(var a=document.querySelectorAll(".Accordian"),b=0;b<a.length;b++){var c=new o(a[b]),d=c.id;j[d]=c}}function b(a){return j[a]}return{init:a,getAccordian:b,openItem:g,closeItem:f}};jbeeb.Accordian=k();var l=200,m="DYNID_SACC_",n=0,o=function(a){this.init(a)},p=o.prototype;p._rootElem=null,p._pages=null,p._startupOpenList=null,p.id=null,p.init=function(a){this._rootElem=a,this._pages=[],this._startupOpenList=[],this.prepareList(),this.closeAll();var b=this._rootElem.id,c=this._startupOpenList,d=this._pages;this.id=b;for(var e=0;e<c.length;e++){for(var f=c[e],h=0;h<d.length;h++){var i=d[h];if(f==i.nextid)for(var j=i.h1.parentNode;j&&"ul"==j.nodeName.toLowerCase()&&j.id!=b;)g(j),j=j.parentNode}g(f,!0)}this._startupOpenList=[]},p.prepareList=function(){if(this._rootElem)for(var c=this._rootElem.querySelectorAll("h1"),d=0;d<c.length;d++){for(var e=c[d],f=a(e),g=e.nextSibling;1!==g.nodeType;)g=g.nextSibling;if("h1"!=g.nodeName){var h=a(g);"1"===e.dataset.open&&this._startupOpenList.push(h),b(e,"click",this.toggleDyna.bind(this)),this._pages.push({nextid:h,h1:e,sticky:"1"==e.dataset.sticky})}}},p.toggleDyna=function(a){var b=a.target||window.event.srcElement,c=this._pages;for(g=0;g<c.length;g++){var d=c[g];d.sticky||d.h1==b||f(d.nextid)}for(var g=0;g<this._pages.length;g++){var d=this._pages[g];d.h1==b&&e(d.nextid)}},p.closeAll=function(){var a=this._pages;for(i=0;i<a.length;i++)f(a[i].nextid)},p.openAll=function(){var a=this._pages;for(i=0;i<a.length;i++)g(a.nextid)},p.openItem=function(a){g(a)}}(),document.addEventListener("DOMContentLoaded",jbeeb.Accordian.init);var findDesigner=function(){function a(a){for(var c=document.styleSheets,d,e=0;e<c.length;e++){var f=c[e],g=f.href,h=g.split("/"),i=h.pop();if(i==a){d=f;break}}return b(d)}function b(a){for(var b=a.cssRules,c={},d=0;d<b.length;d++){var e=b[d],f=e.selectorText;f=f.substr(1,f.length),c[f]=e.style}return c}function c(){var a=document.createElement("style");return a.type="text/css",document.getElementsByTagName("head")[0].appendChild(a),a.styleSheet||a.sheet}function d(a,b,c){a.insertRule?a.insertRule(b+"{"+c+"}",0):a.addRule(b,c)}function e(a){var b=a.target,c=b.checked?"bold":null;l(b.dataset.iid,c)}function f(a){var b=a.target;b.style.opacity=1,l(b.dataset.iid,b.value)}function g(a){var b=null;if(a)for(var c=a.options,d=c.length;d--;){var e=c[d];if(e.selected)return e.value}return null}function h(a){var b=a,c=g(a),d=document.getElementById("font-main_font-family");d.value="Default"==c?"":c,i(d)}function i(a){l(a.dataset.iid,a.value)}function j(a){var b=a.target,c=parseFloat(b.value)+"px";l(b.dataset.iid,c)}function k(a){var b=a.target.dataset.iid,c=F[b];c.elem.value=null,c.elem.style.opacity=.2,l(b,null,"color")}function l(a,b){var c=F[a];G[c.rule][c.style]=b,c.val=b,m()}function m(){E.value="Click the MAKE button chump.",jsonResult.value="Click the MAKE button chump."}function n(){var a={};for(var b in F){var c=F[b],d=c.subRef,e=d.split(" > "),f=e[0],g=e[1],h=a[f];h||(h=a[f]={}),h[g]=c.val}var i=w,j=z,k=o(a.settings);j=j.replace(/__LIST__/m,k),i+=j;for(var b in a)if("settings"!=b){var j=y;j=j.replace(/__SCOPE__/m,b),k=o(a[b]),j=j.replace(/__LIST__/m,k),i+=j}i+=x,E.value=i;var l=v.replace(/__FONT__/g,a.font.family);l=l.replace(/__SIZE__/g,a.font.size.replace("px","")),jsonResult.value=l;var m=document.getElementById("userSettingsPath");m.value=r?"C:\\Users\\%username%\\AppData\\Roaming\\Sublime Text 2\\Packages\\User\\Find Results.sublime-settings":"/Users/YOUR_USER_NAME/Library/Application Support/Sublime Text 3/Packages/User/Find Results.sublime-settings";var m=document.getElementById("themePath");m.value=r?"C:\\Users\\%username%\\AppData\\Roaming\\Sublime Text 2\\Packages\\User\\MY_THEME.hidden-tmTheme":"/Users/YOUR_USER_NAME/Library/Application Support/Sublime Text 3/Packages/User/MY_THEME.hidden-tmTheme",jbeeb.Accordian.openItem("generateTreeItem")}function o(a){var b="";for(var c in a){var d=a[c];d&&("rgb"==d.substr(0,3)&&(d=p(d)),b+="			<key>"+c+"</key>"+s,b+="			<string>"+d+"</string>"+s)}return b}function p(a){return a=a.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i),a&&4===a.length?"#"+("0"+parseInt(a[1],10).toString(16)).slice(-2)+("0"+parseInt(a[2],10).toString(16)).slice(-2)+("0"+parseInt(a[3],10).toString(16)).slice(-2):""}function q(){I=document.getElementById("generate"),I.addEventListener("click",n),E=document.getElementById("xmlResult");var a=c();for(var g in u){var h="."+g,m="",o=u[g];for(var p in o)m+=p+" : "+o[p]+";";d(a,h,m)}G=b(a),H=document.getElementById("editor");var q=[].slice.call(H.querySelectorAll('input[type="color"]')),r=[].slice.call(H.querySelectorAll('input[type="checkbox"]')),s=[].concat(q,r);s.push(document.getElementById("font-main_font-family")),s.push(document.getElementById("font-main_font-size"));for(var t=0;t<s.length;t++){var v=s[t],w=v.id,x=w.split("-"),y=x.shift(),z=x.join("-"),x=z.split("_"),B=x[0],C=x[1],D=u[B][C];D&&(v.value=D);var J={elem:v,iid:z,val:D,subRef:A[z],rule:B,style:C},K;"cp"==y?K=f:"cb"==y?K=e:"font"==y&&(K=/family/.test(w)?i:j),v.addEventListener("change",K),v.dataset.iid=z,F[z]=J,l(z,D)}for(var L=H.querySelectorAll(".clearVal"),t=0;t<L.length;t++){var v=L[t],w=v.id,z=w.replace("clear-","");v.addEventListener("click",k),v.dataset.iid=z}var z="main_font-size";l(z,F[z].val+"px")}var r=navigator.platform.toUpperCase().indexOf("Windows")>-1,s=r?"\r\n":"\n",t={bfb:{main:{"background-color":"#ffffff",color:"#000000"},"active-line-mark":{"background-color":"#ff0000"},selection:{"background-color":"#ffff00",color:"#ff0000","outline-color":"#ff0000"},query:{color:"#419900"},"results-number":{color:"#660099"},footer:{"background-color":"#dcdcdc",color:"#000000"},"footer-count-matches":{color:"#009121"},"footer-count-files":{color:"#660099"},filename:{"background-color":"#568eff",color:"#ffffff"},"match-line":{"background-color":"#fef1b2"},"match-line":{color:"#000000"},"line-number-match":{"background-color":"#fef1b2",color:"#000000"},"line-number-match-colon":{"background-color":"#fef1b2",color:"#fef1b2"},caret:{"outline-color":"#ff0000"},"line-number-incontext":{"background-color":"#ffffff",color:"#000000"},query:{"font-weight":"bold"},"results-number":{"font-weight":"bold"},"footer-count-matches":{"font-weight":null},"footer-count-files":{"font-weight":null},main:{"font-family":"Arial","font-size":12}}},u=t.bfb;u.caret["outline-style"]="solid",u.caret["outline-width"]="1px",u.selection["outline-style"]="solid",u.selection["outline-width"]="1px";var v="";v+="{"+s,v+='	"color_scheme": "Packages/User/MY_THEME.hidden-tmTheme",'+s,v+='	"font_face": "__FONT__",'+s,v+='	"font_size": __SIZE__'+s,v+="}"+s;var w="";w+='<?xml version="1.0" encoding="UTF-8"?>'+s,w+='<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">'+s,w+='<plist version="1.0">'+s,w+="<dict>"+s,w+="	<key>name</key>"+s,w+="	<string>Sublime Find Results</string>"+s,w+="	<key>settings</key>"+s,w+="	<array>"+s;var x="";x+="	</array>"+s,x+="	<key>uuid</key>"+s,x+="	<string>edcc9b28-ac04-4b4a-8fa3-f4be3c0d3b02</string>"+s,x+="</dict>"+s,x+="</plist>"+s;var y="";y+="	<dict>"+s,y+="		<key>scope</key>"+s,y+="		<string>__SCOPE__</string>"+s,y+="		<key>settings</key>"+s,y+="		<dict>"+s,y+="__LIST__"+s,y+="		</dict>"+s,y+="	</dict>"+s;var z="";z+="	<dict>"+s,z+="		<key>settings</key>"+s,z+="		<dict>"+s,z+="__LIST__"+s,z+="		</dict>"+s,z+="	</dict>"+s;var A={"main_font-family":"font > family","main_font-size":"font > size","main_background-color":"settings > background",main_color:"settings > foreground","caret_outline-color":"settings > caret","selection_background-color":"settings > selection","selection_outline-color":"settings > selectionBorder",selection_color:"settings > selectionForeground","active-line-mark_background-color":"settings > lineHighlight",query_color:"string.query.find-in-files > foreground","query_font-weight":"string.query.find-in-files > fontStyle","results-number_color":"variable.total_files_count.find-in-files > foreground","results-number_font-weight":"variable.total_files_count.find-in-files > fontStyle",filename_color:"entity.name.filename.find-in-files > foreground","filename_background-color":"entity.name.filename.find-in-files > background",footer_color:"footer.find-in-files > foreground","footer_background-color":"footer.find-in-files > background","footer-count-matches_color":"variable.matched_count.find-in-files > foreground","footer-count-matches_font-weight":"variable.matched_count.find-in-files > fontStyle","footer-count-files_color":"variable.matched_files_count.find-in-files > foreground","footer-count-files_font-weight":"variable.matched_files_count.find-in-files > fontStyle",filename_color:"entity.name.filename.find-in-files > foreground","filename_background-color":"entity.name.filename.find-in-files > background","match-line_color":"match.find-in-files > foreground","match-line_background-color":"match.find-in-files > background","line-number-match_color":"constant.numeric.line-number.match.find-in-files > foreground","line-number-match_background-color":"constant.numeric.line-number.match.find-in-files > background","line-number-match-colon_color":"punctuation.line-number.match.find-in-files > foreground","line-number-match-colon_background-color":"punctuation.line-number.match.find-in-files > background","line-number-incontext_color":"constant.numeric.line-number.find-in-files > foreground","line-number-incontext_background-color":"constant.numeric.line-number.find-in-files > background"},B={};for(var C in A)B[A[C]]=C;var D,E,F={},G,H,I;return{init:q,applyFontFamily:h}}();document.addEventListener("DOMContentLoaded",findDesigner.init);
+</script>
+
+
+</head>
+
+<body>
+<div id="editor">
+	<div id="myAcc" class="Accordian">
+		<h1 data-open=1>Main</h1>
+		<ul>
+			<li><select id="myfont-selector" onchange="findDesigner.applyFontFamily(this)">
+				<option value="Arial">Arial</option>
+				<option value="Helvetica">Helvetica</option>
+				<option value="Courier">Courier</option>
+				<option value="Lucida Console">Lucida Console</option>
+				<option value="Tahoma">Tahoma</option>
+				<option value="Times">Times</option>
+				<option value="Trebuchet MS">Trebuchet MS</option>
+				<option value="Verdana">Verdana</option>
+			</select>
+				<input id="font-main_font-family" type="text" value="Arial"></input> <input id="font-main_font-size" type="number" min="4" max="20" value="12" /> px
+				</li>
+				
+			<li>background <input id="cp-main_background-color" type="color" /><div id="clear-main_background-color" class="clearVal"></div></li>
+			<li>text <input id="cp-main_color" type="color" /><div id="clear-main_color" class="clearVal"></div></li>
+			<li>active line mark <input id="cp-active-line-mark_background-color" type="color" /><div id="clear-active-line-mark_background-color" class="clearVal"></div></li>
+		</ul>
+		<h1>Selection</h1>
+		<ul>
+			<li>background <input id="cp-selection_background-color" type="color" /><div id="clear-selection_background-color" class="clearVal"></div></li>
+			<li>text <input id="cp-selection_color" type="color" /><div id="clear-selection_text" class="clearVal"></div></li>
+			<li>outline <input id="cp-selection_outline-color" type="color" /><div id="clear-selection_outline-color" class="clearVal"></div></li>
+		</ul>
+		<h1>Header</h1>
+		<ul>
+			<li>query term: <input id="cb-query_font-weight" type="checkbox" value="bold"/>bold  <input id="cp-query_color" type="color" /><div id="clear-query_color" class="clearVal"></div></li>
+			<li># files: <input id="cb-results-number_font-weight" type="checkbox" value="bold" />bold <input id="cp-results-number_color" type="color" /><div id="clear-results-number_color" class="clearVal"></div></li>
+		</ul>
+		<h1 data-open=1>Footer</h1>
+		<ul>
+			<li>background <input id="cp-footer_background-color" type="color" /><div id="clear-footer_background-color" class="clearVal"></div></li>
+			<li>text <input id="cp-footer_color" type="color" /><div id="clear-footer_color" class="clearVal"></div></li>
+			<li># matches <input id="cb-footer-count-matches_font-weight" type="checkbox" />bold <input id="cp-footer-count-matches_color" type="color" /><div id="clear-footer-count-matches_color" class="clearVal"></div></li>
+			<li># files <input id="cb-footer-count-files_font-weight" type="checkbox" />bold <input id="cp-footer-count-files_color" type="color" /><div id="clear-footer-count-files_color" class="clearVal"></div></li>
+		</ul>
+		<h1>Lines</h1>
+		<ul>
+			<h2>file path</h2>
+				<li>background <input id="cp-filename_background-color" type="color" /><div id="clear-filename_background-color" class="clearVal"></div></li>
+				<li>text <input id="cp-filename_color" type="color" /><div id="clear-filename_color" class="clearVal"></div></li>
+				
+			<h2>match</h2>
+				<li>background <input id="cp-match-line_background-color" type="color" /><div id="clear-match-line_background-color" class="clearVal"></div></li>
+				<li>text <input id="cp-match-line_color" type="color" /><div id="clear-match-line_color" class="clearVal"></div></li>
+				<li>line # background <input id="cp-line-number-match_background-color" type="color" /><div id="clear-line-number-match_background-color" class="clearVal"></div></li>
+				<li>line # text <input id="cp-line-number-match_color" type="color" /><div id="clear-line-number-match_color" class="clearVal"></div></li>
+				<li>line # colon bkgd <input id="cp-line-number-match-colon_background-color" type="color" /><div id="clear-line-number-match-colon_background-color" class="clearVal"></div></li>
+				<li>line # colon text <input id="cp-line-number-match-colon_color" type="color" /><div id="clear-line-number-match-colon_color" class="clearVal"></div></li>
+				<li>query text outline <input id="cp-caret_outline-color" type="color" /><div id="clear-caret_outline-color" class="clearVal"></div></li>
+			
+			<!-- <h2>line # other lines <input id="cp-line-number-incontext_color" type="color" /><div id="clear-line-number-incontext_color" class="clearVal"></div></h2> -->
+			<h2>non-matching line #&apos;s</h2>
+				<li>line # background <input id="cp-line-number-incontext_background-color" type="color" /><div id="clear-line-number-incontext_background-color" class="clearVal"></div></li>
+				<li>line # text <input id="cp-line-number-incontext_color" type="color" /><div id="clear-line-number-incontext_color" class="clearVal"></div></li>
+				
+		</ul>
+		<h1 data-sticky=1>OUTPUT XML <button id="generate">MAKE</button></h1>
+		<ul id="generateTreeItem">
+			
+			<li>&nbsp;</li>
+			<li>Find Results.sublime-settings<input class="pathString" id="userSettingsPath"></input></li>
+			<li><textarea id="jsonResult" class="resultsData"></textarea></li>
+			
+			<li>&nbsp;</li>
+			<li>MY_THEME.hidden-tmTheme<input class="pathString" id="themePath"></input></li>
+			<li><textarea id="xmlResult" class="resultsData"></textarea></li>
+			<li>&nbsp;</li>
+		</ul>
+	</div>
+</div>
+<div class="main">
+	<div class="line"><span class="line-margin"></span>Searching <span class="results-number">8</span> files for <span class="query">"each"</span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line filename"><span class="line-margin"></span>/Volumes/Drives/library/loot/javascript/frameworks/jquery/jquery-2.1.4/jquery-master/src/attributes/attr.js:</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 16</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 17</span> <span class="tab"></span>removeAttr: function( name ) {</div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match"> 18</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function() {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 19</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>jQuery.removeAttr( this, name );</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 20</span> <span class="tab"></span><span class="tab"></span>});</div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line filename"><span class="line-margin"></span>/Volumes/Drives/library/loot/javascript/frameworks/jquery/jquery-2.1.4/jquery-master/src/attributes/classes.js:</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 20</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 21</span> <span class="tab"></span><span class="tab"></span>if ( jQuery.isFunction( value ) ) {</div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match"> 22</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function( j ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 23</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>jQuery( this ).addClass( value.call( this, j, getClass( this ) ) );</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 24</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>});</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> ..</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 62</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-incontext"> 63</span> <span class="tab"></span><span class="tab"></span>if ( jQuery.isFunction( value ) ) {</span></div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-match"> 64</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function( j ) {</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-incontext"> 65</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>jQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-incontext"> 66</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>});</span></div>
+	<div class="line"><span class="line-margin active-line-mark"></span><span class="line-indent"></span><span class="selection"> ..</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">106</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">126</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>while ( ( className = classNames[ i++ ] ) ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">127</span> </div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match">128</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>// Check <span class="caret">each</span> className given, space separated list</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">129</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>if ( self.hasClass( className ) ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">130</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>self.removeClass( className );</div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line filename"><span class="line-margin"></span>/Volumes/Drives/library/loot/javascript/frameworks/jquery/jquery-2.1.4/jquery-master/src/attributes/val.js:</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 35</span> <span class="tab"></span><span class="tab"></span>isFunction = jQuery.isFunction( value );</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 36</span> </div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match"> 37</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function( i ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 38</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>var val;</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 39</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> ..</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">145</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">146</span> // Radios and checkboxes getter/setter</div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match">147</span><span class="line-number-match-colon">:</span> jQuery.<span class="caret">each</span>([ "radio", "checkbox" ], function() {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">148</span> <span class="tab"></span>jQuery.valHooks[ this ] = {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">149</span> <span class="tab"></span><span class="tab"></span>set: function( elem, value ) {</div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line footer"><span class="footer-count-matches">6</span> matches across <span class="footer-count-files">3</span> files</div>
+	<div> BetterFindBuffer style designer by <a href="http://www.gieson.com">Mike Gieson</a></div>
+	<!-- force scrollbar to always show -->
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	
+</div>
+
+</body>
+</html>
