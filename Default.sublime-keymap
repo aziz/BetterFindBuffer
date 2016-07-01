@@ -7,6 +7,13 @@
   ]
 },
 {
+  "keys": ["o"],
+  "command": "find_in_files_open_file",
+  "context": [
+    { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
   "keys": ["a"],
   "command": "find_in_files_open_all_files",
   "context": [
