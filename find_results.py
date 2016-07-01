@@ -84,6 +84,8 @@ class FindInFilesJumpCommand(sublime_plugin.TextCommand):
     def goto_match(self, match):
         self.view.sel().clear()
         self.view.sel().add(match)
+        if self.view.is_folded(self.view.sel()[0]):
+            self.view.unfold(self.view.sel()[0])
 
 
 class FindInFilesJumpFileCommand(FindInFilesJumpCommand):
