@@ -1,0 +1,12 @@
+BetterFindBuffer version 1.0.0
+
+You need to *restart* SublimeText.
+
+Changelog:
+● Configurable readonly settings
+● Open multiple files with multiple cursor
+● Jump by match instead of by search result. a more reliable `j` and `k` movements
+● Open all files in the result with `a`
+● Fold a result with `f` and move to next file
+● Show shortcuts with `?`
+● Remove path prefix in filenames based on open sublime's project folders
