@@ -1,3 +1,4 @@
 {
-  "readonly": true
+  "readonly": true,
+  "fold_path_prefix": true
 }
