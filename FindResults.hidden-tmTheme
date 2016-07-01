@@ -45,7 +45,7 @@
       <key>settings</key>
       <dict>
         <key>foreground</key>
-        <string>#660099</string>
+        <string>#4078c0</string>
         <key>fontStyle</key>
         <string>bold</string>
       </dict>
@@ -81,7 +81,7 @@
       <key>settings</key>
       <dict>
         <key>foreground</key>
-        <string>#660099</string>
+        <string>#4078c0</string>
         <key>fontStyle</key>
         <string>bold</string>
       </dict>
@@ -115,7 +115,7 @@
       <key>settings</key>
       <dict>
         <key>background</key>
-        <string>#FFD42044</string>
+        <string>#FFD42033</string>
       </dict>
     </dict>
 
