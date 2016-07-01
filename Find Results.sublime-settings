@@ -1,10 +1,9 @@
 {
   "color_scheme": "Packages/BetterFindBuffer/FindResults.hidden-tmTheme",
-  "spell_check": false,
   "draw_indent_guides": false,
-  "margin": 8,
   "gutter": false,
-  "line_numbers": true,
+  "margin": 8,
   "rulers": [],
-  "word_wrap": true // ?
+  "spell_check": false,
+  "word_wrap": true
 }

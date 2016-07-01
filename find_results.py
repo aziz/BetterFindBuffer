@@ -125,8 +125,8 @@ class BfbClearFilePathCommand(sublime_plugin.TextCommand):
 
 class BfbTogglePopupHelpCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        popup_max_width = 600
-        popup_max_height = 600
+        popup_max_width = 800
+        popup_max_height = 800
         html = sublime.load_resource("Packages/BetterFindBuffer/shortcuts.html")
         self.view.show_popup(html, 0, -1, popup_max_width, popup_max_height)
 
@@ -136,10 +136,11 @@ class BfbFoldAndMoveToNextFileCommand(sublime_plugin.TextCommand):
         begin = self.get_begin()
         end = self.get_end()
         self.view.fold(sublime.Region(begin.b + 1, end.a - 1))
-        # sublime.set_timeout_async(self.move_to_next, 100)
+        sublime.set_timeout_async(self.move_to_next, 0)
 
     def move_to_next(self):
-        self.view.run_command('find_next')
+        self.view.run_command('find_in_files_jump_file')
+        self.view.run_command('find_in_files_jump_match')
 
     def get_begin(self):
         view = self.view
