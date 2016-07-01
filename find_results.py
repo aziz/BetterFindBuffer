@@ -36,7 +36,6 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
         return None
 
 
-
 class FindInFilesOpenAllFilesCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
@@ -114,35 +113,6 @@ class FindInFilesJumpMatchCommand(FindInFilesJumpCommand):
             v.show_at_center(match)
 
 
-class FindInFilesSetReadOnly(sublime_plugin.EventListener):
-    def is_find_results(self, view):
-        syntax = view.settings().get('syntax', '')
-        if syntax:
-            return syntax.endswith("Find Results.hidden-tmLanguage")
-
-    def on_activated_async(self, view):
-        if self.is_find_results(view):
-            view.run_command('bfb_clear_file_path')
-            view.set_read_only(True)
-
-    def on_deactivated_async(self, view):
-        if self.is_find_results(view):
-            view.set_read_only(False)
-
-
-# Some plugins like **Color Highlighter** are forcing their color-scheme to the activated view
-# Although, it's something that should be fixed on their side, in the meantime, it's safe to force
-# the color shceme on `on_activated_async` event.
-class BFBForceColorSchemeCommand(sublime_plugin.EventListener):
-    def on_activated_async(self, view):
-        syntax = view.settings().get('syntax')
-        if syntax and (syntax.endswith("Find Results.hidden-tmLanguage")):
-            settings = sublime.load_settings('Find Results.sublime-settings')
-            color_scheme = settings.get('color_scheme')
-            if color_scheme:
-                view.settings().set('color_scheme', color_scheme)
-
-
 class BfbClearFilePathCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         folders = sublime.active_window().folders()
@@ -194,6 +164,34 @@ class BfbFoldAndMoveToNextFileCommand(sublime_plugin.TextCommand):
                 line = view.line(line.end() + 1)
         return None
 
+
+class FindInFilesSetReadOnly(sublime_plugin.EventListener):
+    def is_find_results(self, view):
+        syntax = view.settings().get('syntax', '')
+        if syntax:
+            return syntax.endswith("Find Results.hidden-tmLanguage")
+
+    def on_activated_async(self, view):
+        if self.is_find_results(view):
+            view.run_command('bfb_clear_file_path')
+            view.set_read_only(True)
+
+    def on_deactivated_async(self, view):
+        if self.is_find_results(view):
+            view.set_read_only(False)
+
+
+# Some plugins like **Color Highlighter** are forcing their color-scheme to the activated view
+# Although, it's something that should be fixed on their side, in the meantime, it's safe to force
+# the color shceme on `on_activated_async` event.
+class BFBForceColorSchemeCommand(sublime_plugin.EventListener):
+    def on_activated_async(self, view):
+        syntax = view.settings().get('syntax')
+        if syntax and (syntax.endswith("Find Results.hidden-tmLanguage")):
+            settings = sublime.load_settings('Find Results.sublime-settings')
+            color_scheme = settings.get('color_scheme')
+            if color_scheme:
+                view.settings().set('color_scheme', color_scheme)
 
 
 def plugin_loaded():
