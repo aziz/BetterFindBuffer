@@ -168,9 +168,6 @@ class BfbFoldAndMoveToNextFileCommand(sublime_plugin.TextCommand):
 
 
 class FindInFilesSetReadOnly(sublime_plugin.EventListener):
-    def __init__(self):
-        self.settings = sublime.load_settings('BetterFindBuffer.sublime-settings')
-
     def is_find_results(self, view):
         syntax = view.settings().get('syntax', '')
         if syntax:
@@ -178,9 +175,10 @@ class FindInFilesSetReadOnly(sublime_plugin.EventListener):
 
     def on_activated_async(self, view):
         if self.is_find_results(view):
-            if self.settings.get('fold_path_prefix', True):
+            settings = sublime.load_settings('BetterFindBuffer.sublime-settings')
+            if settings.get('fold_path_prefix', True):
                 view.run_command('bfb_clear_file_path')
-            view.set_read_only(self.settings.get('readonly', True))
+            view.set_read_only(settings.get('readonly', True))
 
     def on_deactivated_async(self, view):
         if self.is_find_results(view):
