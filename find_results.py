@@ -5,14 +5,13 @@ import re, os, shutil
 class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
-        if view.name() == "Find Results":
-            line_no = self.get_line_no()
-            file_name = self.get_file()
-            if line_no is not None and file_name is not None:
-                file_loc = "%s:%s" % (file_name, line_no)
-                view.window().open_file(file_loc, sublime.ENCODED_POSITION)
-            elif file_name is not None:
-                view.window().open_file(file_name)
+        line_no = self.get_line_no()
+        file_name = self.get_file()
+        if line_no is not None and file_name is not None:
+            file_loc = "%s:%s" % (file_name, line_no)
+            view.window().open_file(file_loc, sublime.ENCODED_POSITION)
+        elif file_name is not None:
+            view.window().open_file(file_name)
 
     def get_line_no(self):
         view = self.view
@@ -123,6 +122,7 @@ class FindInFilesSetReadOnly(sublime_plugin.EventListener):
 
     def on_activated_async(self, view):
         if self.is_find_results(view):
+            view.run_command('bfb_clear_file_path')
             view.set_read_only(True)
 
     def on_deactivated_async(self, view):
@@ -141,6 +141,59 @@ class BFBForceColorSchemeCommand(sublime_plugin.EventListener):
             color_scheme = settings.get('color_scheme')
             if color_scheme:
                 view.settings().set('color_scheme', color_scheme)
+
+
+class BfbClearFilePathCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        folders = sublime.active_window().folders()
+        for folder in folders:
+            path, folder_name = os.path.split(folder)
+            regions = self.view.find_all(path)
+            for r in reversed(regions):
+                self.view.fold(sublime.Region(r.a, r.b+1))
+
+
+class BfbTogglePopupHelpCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        popup_max_width = 600
+        popup_max_height = 600
+        html = sublime.load_resource("Packages/BetterFindBuffer/shortcuts.html")
+        self.view.show_popup(html, 0, -1, popup_max_width, popup_max_height)
+
+
+class BfbFoldAndMoveToNextFileCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        begin = self.get_begin()
+        end = self.get_end()
+        self.view.fold(sublime.Region(begin.b + 1, end.a - 1))
+        # sublime.set_timeout_async(self.move_to_next, 100)
+
+    def move_to_next(self):
+        self.view.run_command('find_next')
+
+    def get_begin(self):
+        view = self.view
+        if len(view.sel()) == 1:
+            line = view.line(view.sel()[0])
+            while line.begin() > 0:
+                line_text = view.substr(line)
+                match = re.match(r"\S(.+):$", line_text)
+                if match:
+                    return(line)
+                line = view.line(line.begin() - 1)
+        return None
+
+    def get_end(self):
+        view = self.view
+        if len(view.sel()) == 1:
+            line = view.line(view.sel()[0])
+            while line.end() <= view.size():
+                line_text = view.substr(line)
+                if len(line_text) == 0:
+                    return(line)
+                line = view.line(line.end() + 1)
+        return None
+
 
 
 def plugin_loaded():

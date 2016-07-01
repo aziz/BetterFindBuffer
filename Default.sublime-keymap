@@ -42,5 +42,19 @@
   "context": [
     { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
+},
+{
+  "keys": ["f"],
+  "command": "bfb_fold_and_move_to_next_file",
+  "context": [
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["?"],
+  "command": "bfb_toggle_popup_help",
+  "context": [
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
 }
 ]
