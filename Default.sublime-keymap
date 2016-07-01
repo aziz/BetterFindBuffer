@@ -3,14 +3,14 @@
   "keys": ["enter"],
   "command": "find_in_files_open_file",
   "context": [
-      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
 },
 {
   "keys": ["n"],
   "command": "find_in_files_jump_file",
   "context": [
-      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
 },
 {
@@ -18,14 +18,14 @@
   "command": "find_in_files_jump_file",
   "args": { "forward": false },
   "context": [
-      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
 },
 {
   "keys": ["j"],
   "command": "find_next",
   "context": [
-      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
 },
 {
@@ -33,8 +33,21 @@
   "command": "find_prev",
   "args": { "forward": false },
   "context": [
-      {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["f"],
+  "command": "bfb_fold_and_move_to_next_file",
+  "context": [
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["?"],
+  "command": "bfb_toggle_popup_help",
+  "context": [
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
 }
-
 ]
