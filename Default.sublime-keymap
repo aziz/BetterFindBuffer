@@ -63,5 +63,63 @@
   "context": [
     {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
   ]
-}
+},
+{
+  "keys": ["щ"],
+  "command": "find_in_files_open_file",
+  "context": [
+    { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["ф"],
+  "command": "find_in_files_open_all_files",
+  "context": [
+    { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["т"],
+  "command": "find_in_files_jump_file",
+  "context": [
+    { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["з"],
+  "command": "find_in_files_jump_file",
+  "args": { "forward": false },
+  "context": [
+    { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["о"],
+  "command": "find_in_files_jump_match",
+  "context": [
+    { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["л"],
+  "command": "find_in_files_jump_match",
+  "args": { "forward": false },
+  "context": [
+    { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": ["а"],
+  "command": "bfb_fold_and_move_to_next_file",
+  "context": [
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
+{
+  "keys": [","],
+  "command": "bfb_toggle_popup_help",
+  "context": [
+    {"key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  ]
+},
 ]
