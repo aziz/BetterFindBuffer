@@ -150,9 +150,9 @@
       <key>settings</key>
       <dict>
         <key>background</key>
-        <string>#351211</string>
+        <string>#332032</string>
         <key>foreground</key>
-        <string>#E23D36</string>
+        <string>#A660A6</string>
         <key>fontStyle</key>
         <string>bold</string>
       </dict>
