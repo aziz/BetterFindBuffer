@@ -16,7 +16,7 @@ Adds a couple of missing features to SublimeText Find Results buffer.
 - Adds search keyword and file names to the symbols list (use <kbd>Super</kbd>+<kbd>R</kbd>)
 - Cleaner UI (hides line numbers, gutter, indent guides)
 - Better Syntax highlighting for find results
-- Cutom color scheme
+- Custom color scheme
 
 ![BetterFindBuffer Screenshot1](https://cloud.githubusercontent.com/assets/3202/16536669/d9ed24c0-3ff4-11e6-9d4f-779049c063cd.png)
 
@@ -35,7 +35,7 @@ If you don't like colors used in the find results buffer just copy [this file](h
 }
 ```
 
-Alternatively, You can use [BetterFindBuffer-Designer](http://bobtherobot.github.io/BetterFindBuffer-Designer/) tool as GUI to easily customize the Find-Results color scheme.
+Alternatively, you can use [BetterFindBuffer-Designer](http://bobtherobot.github.io/BetterFindBuffer-Designer/) tool as GUI to easily customize the Find-Results color scheme.
 
 ### Credit
 `FindInFilesOpenFileCommand` is inspired by [this answer on StackOverflow](http://stackoverflow.com/a/16779397/78254)
