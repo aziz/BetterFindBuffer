@@ -1,4 +1,6 @@
 {
+  // To enable dark theme uncomment line bellow
+  // "color_scheme": "Packages/BetterFindBuffer/FindResultsDark.hidden-tmTheme",
   "color_scheme": "Packages/BetterFindBuffer/FindResults.hidden-tmTheme",
   "draw_indent_guides": false,
   "gutter": false,

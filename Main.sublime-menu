@@ -9,35 +9,18 @@
       "caption": "BetterFindBuffer",
       "children": [
         {
-          "command": "open_file",
-          "args": {
-            "file": "${packages}/BetterFindBuffer/BetterFindBuffer.sublime-settings"
-          },
-          "caption": "Settings – Default"
+          "caption": "Settings",
+          "command": "edit_settings",
+            "args": {
+            "base_file": "${packages}/BetterFindBuffer/BetterFindBuffer.sublime-settings",
+            "default": "// Settings in here override those in \"BetterFindBuffer/BetterFindBuffer.sublime-settings\",\n\n{\n\t$0\n}\n"}
         },
         {
-          "command": "open_file",
-          "args": {
-            "file": "${packages}/User/BetterFindBuffer.sublime-settings"
-          },
-          "caption": "Settings – User"
-        },
-        {
-          "caption": "-"
-        },
-        {
-          "command": "open_file",
-          "args": {
-            "file": "${packages}/BetterFindBuffer/Find Results.sublime-settings"
-          },
-          "caption": "Find Results Settings – Default"
-        },
-        {
-          "command": "open_file",
-          "args": {
-            "file": "${packages}/User/Find Results.sublime-settings"
-          },
-          "caption": "Find Results Settings – User"
+          "caption": "Find Results Settings",
+          "command": "edit_settings",
+            "args": {
+            "base_file": "${packages}/BetterFindBuffer/Find Results.sublime-settings",
+            "default": "// Settings in here override those in \"BetterFindBuffer/Find Results.sublime-settings\",\n\n{\n\t$0\n}\n"}
         }
       ]
     }]

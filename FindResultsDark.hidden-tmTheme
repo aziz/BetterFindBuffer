@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>Sublime Find Results</string>
+  <key>settings</key>
+  <array>
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#131415</string>
+
+        <key>foreground</key>
+        <string>#DAD6CD</string>
+
+        <key>caret</key>
+        <string>#FFFFFF</string>
+
+        <key>invisibles</key>
+        <string>#404040</string>
+
+        <key>lineHighlight</key>
+        <string>#452455</string>
+
+        <key>selection</key>
+        <string>#5B2E73</string>
+        <key>selectionBorder</key>
+        <string>#c862e687</string>
+
+        <key>selectionForeground</key>
+        <string>#000000</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <string>variable.total_files_count.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#FFCC33</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <string>string.query.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#ffff00</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <string>variable.matched_count.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#FFCC33</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <string>variable.matched_files_count.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#FFCC33</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <string>variable.no_matches.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#ff0000</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <!-- Color of line numbers -->
+      <key>scope</key>
+      <string>constant.numeric.line-number.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#F26FBC</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <!-- LINES -->
+      <string>match.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#1a1a1a</string>
+        <key>foreground</key>
+        <string>#ffff00</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <!-- Color of line numbers matched line -->
+      <string>constant.numeric.line-number.match.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#F26FBC</string>
+        <key>background</key>
+        <string>#4A0A2F</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <string>punctuation.line-number.match.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>
+        <string>#FFD42044</string>
+        <key>background</key>
+        <string>#FFD42044</string>
+      </dict>
+    </dict>
+
+
+    <dict>
+      <key>scope</key>
+      <string>entity.name.filename.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#332032</string>
+        <key>foreground</key>
+        <string>#A660A6</string>
+        <key>fontStyle</key>
+        <string>bold</string>
+      </dict>
+    </dict>
+
+    <dict>
+      <key>scope</key>
+      <string>footer.find-in-files</string>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#33333322</string>
+      </dict>
+    </dict>
+
+  </array>
+  <key>uuid</key>
+  <string>edcc9b28-ac04-4b4a-8fa3-f4be3c0d3b02</string>
+</dict>
+</plist>
