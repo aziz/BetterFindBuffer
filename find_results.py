@@ -29,7 +29,7 @@ class FindInFilesOpenFileCommand(sublime_plugin.TextCommand):
             line_text = view.substr(line)
             match = re.match(r"(.+):$", line_text)
             if match:
-                if os.path.exists(match.group(1)):
+                if os.path.exists(os.path.expanduser(match.group(1))):
                     return match.group(1)
             line = view.line(line.begin() - 1)
         return None
